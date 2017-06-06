@@ -43,8 +43,8 @@
  */
 #define BOOSTPULSE_PATH "/sys/devices/system/cpu/cpufreq/sprdemand/boostpulse"
 #define CPU_MAX_FREQ_PATH "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
-#define LOW_POWER_MAX_FREQ "900000"
-#define NORMAL_MAX_FREQ "1300000"
+#define LOW_POWER_MAX_FREQ "768000"
+#define NORMAL_MAX_FREQ "1500000"
 
 struct sprdemand_power_module {
     struct power_module base;
@@ -187,4 +187,3 @@ struct sprdemand_power_module HAL_MODULE_INFO_SYM = {
     boostpulse_fd: -1,
     boostpulse_warned: 0,
 };
-
