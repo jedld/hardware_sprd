@@ -1,31 +1,30 @@
-#
-# Copyright (C) 2016 The Android Open Source Project
-# Copyright (C) 2016 The CyanogenMod Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
 
-supported_boards := \
-	sc8810 \
-	sc8830 \
-	scx15 \
+LOCAL_SRC_FILES := \
+    SprdOMXPlugin.cpp \
+	SprdOMXComponent.cpp \
+	SprdSimpleOMXComponent.cpp
 
-ifeq ($(SOC_SCX30G_V2),true)
-include $(call all-named-subdir-makefiles,sc8830)
-else ifneq (,$(filter $(supported_boards),$(TARGET_BOARD_PLATFORM)))
-include $(call all-named-subdir-makefiles,scx15)
-endif
+LOCAL_CFLAGS := $(PV_CFLAGS_MINUS_VISIBILITY)
 
-ifeq ($(TARGET_BOARD_PLATFORM),sc8810)
-include $(call all-named-subdir-makefiles,sc8810)
-endif
+LOCAL_C_INCLUDES:= \
+	$(TOP)/frameworks/native/include/media/hardware \
+	$(TOP)/hardware/sprd/libstagefrighthw/include	\
+	$(TOP)/hardware/sprd/libstagefrighthw/include/openmax	\
+	$(TOP)/hardware/sprd/libmemion
+
+LOCAL_C_INCLUDES += $(GPU_GRALLOC_INCLUDES)
+
+LOCAL_SHARED_LIBRARIES :=       \
+        libmemion        \
+        libutils                \
+        libcutils               \
+        libui                   \
+        libdl			\
+	libstagefright_foundation
+LOCAL_MODULE := libstagefrighthw
+
+LOCAL_CFLAGS:= -DLOG_TAG=\"$(TARGET_BOARD_PLATFORM).libstagefright\"
+
+include $(BUILD_SHARED_LIBRARY)
