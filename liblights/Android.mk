@@ -18,9 +18,6 @@
 
 LOCAL_PATH:= $(call my-dir)
 
-ifeq ($(strip $(TARGET_HAS_BACKLIT_KEYS)),false)
-LOCAL_CFLAGS += -DNON_BACKLIT_KEYS
-endif
 
 include $(CLEAR_VARS)
 LOCAL_SRC_FILES := lights.c

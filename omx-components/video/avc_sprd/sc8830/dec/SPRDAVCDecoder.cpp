@@ -1189,8 +1189,8 @@ void SPRDAVCDecoder::onQueueFilled(OMX_U32 portIndex) {
         while(pBufCtrl->iRefCount > 0);
 
 //        ALOGI("%s, %d, mBuffer=0x%x, outHeader=0x%x, iRefCount=%d", __FUNCTION__, __LINE__, *itBuffer, outHeader, pBufCtrl->iRefCount);
-        ALOGV("%s, %d, outHeader:%p, inHeader: %p, len: %d, nOffset: %d, time: %lld, EOS: %d",
-              __FUNCTION__, __LINE__,outHeader,inHeader, inHeader->nFilledLen,inHeader->nOffset, inHeader->nTimeStamp,inHeader->nFlags & OMX_BUFFERFLAG_EOS);
+        // ALOGV("%s, %d, outHeader:%p, inHeader: %p, len: %d, nOffset: %d, time: %lld, EOS: %d",
+        //       __FUNCTION__, __LINE__,outHeader,inHeader, inHeader->nFilledLen,inHeader->nOffset, inHeader->nTimeStamp,inHeader->nFlags & OMX_BUFFERFLAG_EOS);
 
         ++mPicId;
         mFrameDecoded = false;
@@ -1260,7 +1260,7 @@ void SPRDAVCDecoder::onQueueFilled(OMX_U32 portIndex) {
 
             if((p[0] != 0x0) || (p[1] != 0x0) || (p[2] != 0x0) || (p[3] != 0x1))
             {
-                ALOGI("%s, %d, p[0]: %x, p[1]: %x, p[2]: %x, p[3]: %x", __FUNCTION__, __LINE__, p[0], p[1], p[2], p[3]);
+                // ALOGI("%s, %d, p[0]: %x, p[1]: %x, p[2]: %x, p[3]: %x", __FUNCTION__, __LINE__, p[0], p[1], p[2], p[3]);
 
                 ((uint8_t *) mPbuf_stream_v)[0] = 0x0;
                 ((uint8_t *) mPbuf_stream_v)[1] = 0x0;
@@ -1277,7 +1277,7 @@ void SPRDAVCDecoder::onQueueFilled(OMX_U32 portIndex) {
             }
         }
 
-        ALOGV("%s, %d, dec_in.dataLen: %d, mPicId: %d", __FUNCTION__, __LINE__, dec_in.dataLen, mPicId);
+        // ALOGV("%s, %d, dec_in.dataLen: %d, mPicId: %d", __FUNCTION__, __LINE__, dec_in.dataLen, mPicId);
 
         outHeader->nTimeStamp = inHeader->nTimeStamp;
         outHeader->nFlags = inHeader->nFlags;
@@ -1303,7 +1303,7 @@ void SPRDAVCDecoder::onQueueFilled(OMX_U32 portIndex) {
             }
         }
 
-        ALOGV("%s, %d, outHeader: %p, pBuffer: %p, phyAddr: 0x%lx",__FUNCTION__, __LINE__, outHeader, outHeader->pBuffer, picPhyAddr);
+        // ALOGV("%s, %d, outHeader: %p, pBuffer: %p, phyAddr: 0x%lx",__FUNCTION__, __LINE__, outHeader, outHeader->pBuffer, picPhyAddr);
         GraphicBufferMapper &mapper = GraphicBufferMapper::get();
         if(iUseAndroidNativeBuffer[OMX_DirOutput]) {
             OMX_PARAM_PORTDEFINITIONTYPE *def = &editPortInfo(kOutputPortIndex)->mDef;
@@ -1316,13 +1316,13 @@ void SPRDAVCDecoder::onQueueFilled(OMX_U32 portIndex) {
             usage = GRALLOC_USAGE_SW_READ_OFTEN|GRALLOC_USAGE_SW_WRITE_OFTEN;
 
             if(mapper.lock((const native_handle_t*)outHeader->pBuffer, usage, bounds, &vaddr)) {
-                ALOGE("onQueueFilled, mapper.lock fail %p",outHeader->pBuffer);
+                // ALOGE("onQueueFilled, mapper.lock fail %p",outHeader->pBuffer);
                 return ;
             }
-            ALOGV("%s, %d, pBuffer: 0x%p, vaddr: %p", __FUNCTION__, __LINE__, outHeader->pBuffer,vaddr);
+            // ALOGV("%s, %d, pBuffer: 0x%p, vaddr: %p", __FUNCTION__, __LINE__, outHeader->pBuffer,vaddr);
             uint8_t *yuv = (uint8_t *)((uint8_t *)vaddr + outHeader->nOffset);
-            ALOGV("%s, %d, yuv: %p, mPicId: %d, outHeader: %p, outHeader->pBuffer: %p, outHeader->nTimeStamp: %lld",
-                  __FUNCTION__, __LINE__, yuv, mPicId,outHeader, outHeader->pBuffer, outHeader->nTimeStamp);
+            // ALOGV("%s, %d, yuv: %p, mPicId: %d, outHeader: %p, outHeader->pBuffer: %p, outHeader->nTimeStamp: %lld",
+                    // __FUNCTION__, __LINE__, yuv, mPicId,outHeader, outHeader->pBuffer, outHeader->nTimeStamp);
             (*mH264Dec_SetCurRecPic)(mHandle, yuv, (uint8 *)picPhyAddr, (void *)outHeader, mPicId);
         } else {
             uint8 *yuv = (uint8 *)(outHeader->pBuffer + outHeader->nOffset);
@@ -1334,9 +1334,9 @@ void SPRDAVCDecoder::onQueueFilled(OMX_U32 portIndex) {
         int64_t start_decode = systemTime();
         MMDecRet decRet = (*mH264DecDecode)(mHandle, &dec_in,&dec_out);
         int64_t end_decode = systemTime();
-        ALOGI("%s, %d, decRet: %d, %dms, dec_out.frameEffective: %d, needIVOP: %d, consume byte: %u, flag:0x%x, SPS:%d, PPS:%d, pts:%lld",
-              __FUNCTION__, __LINE__, decRet, (unsigned int)((end_decode-start_decode) / 1000000L),
-              dec_out.frameEffective, mNeedIVOP, dec_in.dataLen, inHeader->nFlags,dec_out.sawSPS,dec_out.sawPPS, dec_out.pts);
+        // ALOGI("%s, %d, decRet: %d, %dms, dec_out.frameEffective: %d, needIVOP: %d, consume byte: %u, flag:0x%x, SPS:%d, PPS:%d, pts:%lld",
+              // __FUNCTION__, __LINE__, decRet, (unsigned int)((end_decode-start_decode) / 1000000L),
+              // dec_out.frameEffective, mNeedIVOP, dec_in.dataLen, inHeader->nFlags,dec_out.sawSPS,dec_out.sawPPS, dec_out.pts);
 
         mDecoderSawSPS = dec_out.sawSPS;
         mDecoderSawPPS = dec_out.sawPPS;
@@ -1422,7 +1422,7 @@ void SPRDAVCDecoder::onQueueFilled(OMX_U32 portIndex) {
         while (!outQueue.empty() &&
                 mHeadersDecoded &&
                 dec_out.frameEffective) {
-            ALOGV("%s, %d, dec_out.pBufferHeader: %p, dec_out.mPicId: %d, dec_out.pts: %lld", __FUNCTION__, __LINE__, dec_out.pBufferHeader, dec_out.mPicId, dec_out.pts);
+            // ALOGV("%s, %d, dec_out.pBufferHeader: %p, dec_out.mPicId: %d, dec_out.pts: %lld", __FUNCTION__, __LINE__, dec_out.pBufferHeader, dec_out.mPicId, dec_out.pts);
             drainOneOutputBuffer(dec_out.mPicId, dec_out.pBufferHeader, dec_out.pts);
             dump_yuv(dec_out.pOutFrameY, mPictureSize);
 
@@ -1456,8 +1456,8 @@ bool SPRDAVCDecoder::handlePortSettingChangeEvent(const H264SwDecInfo *info) {
                 ALOGE("Timed out waiting for mCondition signal!");
             }
         }
-        ALOGI("%s, %d, mStride: %d, mSliceHeight: %d, info->picWidth: %d, info->picHeight: %d, mGettingPortFormat:%d",
-              __FUNCTION__, __LINE__,mStride, mSliceHeight, info->picWidth, info->picHeight, mGettingPortFormat);
+        // ALOGI("%s, %d, mStride: %d, mSliceHeight: %d, info->picWidth: %d, info->picHeight: %d, mGettingPortFormat:%d",
+        //       __FUNCTION__, __LINE__,mStride, mSliceHeight, info->picWidth, info->picHeight, mGettingPortFormat);
 
         mFrameWidth = info->cropParams.cropOutWidth;
         mFrameHeight = info->cropParams.cropOutHeight;
@@ -1468,15 +1468,15 @@ bool SPRDAVCDecoder::handlePortSettingChangeEvent(const H264SwDecInfo *info) {
 
         if (!mThumbnailMode && needFlushBuffer) {
             if (useNativeBuffer) {
-                ALOGI("%s, %d, info->numRefFrames: %d, info->has_b_frames: %d, def->nBufferCountMin: %d",
-                      __FUNCTION__, __LINE__, info->numRefFrames, info->has_b_frames, def->nBufferCountMin);
+                // ALOGI("%s, %d, info->numRefFrames: %d, info->has_b_frames: %d, def->nBufferCountMin: %d",
+                //       __FUNCTION__, __LINE__, info->numRefFrames, info->has_b_frames, def->nBufferCountMin);
 
                 /*FIXME:plus additional one buffer for avoiding timed out,
                 *because the number of native window reserved buffer is not sure.*/
                 def->nBufferCountMin = info->numRefFrames + info->has_b_frames + 1 + 1;
             } else {
-                ALOGI("%s, %d, info->numRefFrames: %d, info->has_b_frames: %d, def->nBufferCountActual: %d",
-                      __FUNCTION__, __LINE__, info->numRefFrames, info->has_b_frames, def->nBufferCountActual);
+                // ALOGI("%s, %d, info->numRefFrames: %d, info->has_b_frames: %d, def->nBufferCountActual: %d",
+                //       __FUNCTION__, __LINE__, info->numRefFrames, info->has_b_frames, def->nBufferCountActual);
 
                 /*FIXME: When NativeWindow is null, We need calc actual buffer count manually.
                 * 1: avoiding timed out, 1:reconstructed frame, 4:reserved buffers by SurfaceFlinger.*/
@@ -1522,8 +1522,8 @@ void SPRDAVCDecoder::drainOneOutputBuffer(int32_t picId, void* pBufferHeader, ui
     outHeader->nFilledLen = mPictureSize;
     outHeader->nTimeStamp = (OMX_TICKS)pts;
 
-    ALOGV("%s, %d, outHeader: %p, outHeader->pBuffer: %p, outHeader->nOffset: %d, outHeader->nFlags: %d, outHeader->nTimeStamp: %lld",
-          __FUNCTION__, __LINE__, outHeader , outHeader->pBuffer, outHeader->nOffset, outHeader->nFlags, outHeader->nTimeStamp);
+    // ALOGV("%s, %d, outHeader: %p, outHeader->pBuffer: %p, outHeader->nOffset: %d, outHeader->nFlags: %d, outHeader->nTimeStamp: %lld",
+    //       __FUNCTION__, __LINE__, outHeader , outHeader->pBuffer, outHeader->nOffset, outHeader->nFlags, outHeader->nTimeStamp);
 
 //    LOGI("%s, %d, outHeader->nTimeStamp: %d, outHeader->nFlags: %d, mPictureSize: %d", __FUNCTION__, __LINE__, outHeader->nTimeStamp, outHeader->nFlags, mPictureSize);
 //   LOGI("%s, %d, out: %0x", __FUNCTION__, __LINE__, outHeader->pBuffer + outHeader->nOffset);
@@ -1641,10 +1641,10 @@ void SPRDAVCDecoder::updatePortDefinitions(bool updateCrop, bool updateInputSize
     outDef->format.video.nSliceHeight = mSliceHeight;
     outDef->nBufferSize = mPictureSize;
 
-    ALOGI("%s, %d %d %d %d", __FUNCTION__, outDef->format.video.nFrameWidth,
-          outDef->format.video.nFrameHeight,
-          outDef->format.video.nStride,
-          outDef->format.video.nSliceHeight);
+    // ALOGI("%s, %d %d %d %d", __FUNCTION__, outDef->format.video.nFrameWidth,
+    //       outDef->format.video.nFrameHeight,
+    //       outDef->format.video.nStride,
+    //       outDef->format.video.nSliceHeight);
 
     OMX_PARAM_PORTDEFINITIONTYPE *inDef = &editPortInfo(kInputPortIndex)->mDef;
     inDef->format.video.nFrameWidth = mFrameWidth;
@@ -1687,7 +1687,7 @@ int32_t SPRDAVCDecoder::UnbindFrameWrapper(void *aUserData, void *pHeader) {
 
 int SPRDAVCDecoder::VSP_malloc_cb(unsigned int size_extra) {
 
-    ALOGI("%s, %d, mDecoderSwFlag: %d, mPictureSize: %d, size_extra: %d", __FUNCTION__, __LINE__, mDecoderSwFlag, mPictureSize, size_extra);
+    // ALOGI("%s, %d, mDecoderSwFlag: %d, mPictureSize: %d, size_extra: %d", __FUNCTION__, __LINE__, mDecoderSwFlag, mPictureSize, size_extra);
 
     int32_t picId;
     void* pBufferHeader;
@@ -1772,7 +1772,7 @@ int SPRDAVCDecoder::VSP_malloc_mbinfo_cb(unsigned int size_mbinfo, unsigned long
 
     int idx = mPbuf_mbinfo_idx;
 
-    ALOGI("%s, %d, idx: %d, size_mbinfo: %d", __FUNCTION__, __LINE__, idx, size_mbinfo);
+    // ALOGI("%s, %d, idx: %d, size_mbinfo: %d", __FUNCTION__, __LINE__, idx, size_mbinfo);
 
     if (mPbuf_mbinfo_v[idx] != NULL) {
         if (mIOMMUEnabled) {
