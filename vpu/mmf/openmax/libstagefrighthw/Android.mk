@@ -24,5 +24,4 @@ LOCAL_SHARED_LIBRARIES :=       \
 
 LOCAL_MODULE := libstagefrighthw_cm
 
-
 include $(BUILD_SHARED_LIBRARY)
