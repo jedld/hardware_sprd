@@ -39,7 +39,7 @@ LOCAL_CFLAGS:= -DLOG_TAG=\"GSPHAL\"
 
 #/home/apuser/work/shark_android2/device/sprd/common/libs/mali/src/ump/include/ump/ump.h
 MALI_DDK_PATH := device/sprd/common/libs
-LOCAL_C_INCLUDES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include/video
+LOCAL_C_INCLUDES := hardware/sprd/kernel-headers/include/video
 LOCAL_C_INCLUDES += \
 	$(TOP)/hardware/sprd/libgpu/include \
 

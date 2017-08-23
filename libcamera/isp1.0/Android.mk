@@ -28,7 +28,7 @@ CUR_DIR := isp1.0
 
 LOCAL_C_INCLUDES := \
 	system/media/camera/include \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include/video \
+	device/samsing/gtexslte/kernek-headers/include/video \
 	$(LOCAL_PATH)/../common/inc \
 	$(LOCAL_PATH)/../vsp/inc \
 	$(LOCAL_PATH)/../$(OEM_DIR)/inc \

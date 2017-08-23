@@ -51,9 +51,6 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := iontest_sprd
 
-LOCAL_ADDITIONAL_DEPENDENCIES += \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
-
 LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH)/include \
 	$(LOCAL_PATH)/kernel-headers \

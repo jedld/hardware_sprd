@@ -165,7 +165,7 @@ bool Layer::wrapGraphicBuffer()
     getSizeStride(mPrivH->width, mPrivH->height, mPrivH->format, size, stride);
 
     mGFXBuffer = new GraphicBuffer(mPrivH->width, mPrivH->height,
-                                   mPrivH->format, GraphicBuffer::USAGE_HW_TEXTURE,
+                                   mPrivH->format, 1, GraphicBuffer::USAGE_HW_TEXTURE,
                                    stride,
                                    (native_handle_t*)mPrivH, false);
     if (mGFXBuffer->initCheck() != NO_ERROR)
@@ -554,4 +554,3 @@ int Layer::draw()
 }
 
 };
-

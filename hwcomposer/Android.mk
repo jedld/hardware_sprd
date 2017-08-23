@@ -45,10 +45,8 @@ LOCAL_SRC_FILES := SprdHWComposer.cpp \
                    dump.cpp
 LOCAL_C_INCLUDES := \
 	$(TOP)/hardware/sprd/libmemion \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include/video \
+	hardware/sprd/kernel-headers/include/video \
 
-LOCAL_ADDITIONAL_DEPENDENCIES += \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr \
 
 LOCAL_C_INCLUDES += \
 	$(TOP)/hardware/sprd/libgpu/include \

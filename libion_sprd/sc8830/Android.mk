@@ -21,12 +21,9 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := libion_sprd
 
-LOCAL_ADDITIONAL_DEPENDENCIES += \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
-
 LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH)/include \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
+	hardware/sprd/kernel-headers/include \
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := \
 	$(LOCAL_C_INCLUDES) \
@@ -50,12 +47,9 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := iontest_sprd
 
-LOCAL_ADDITIONAL_DEPENDENCIES += \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
-
 LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH)/include \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+	hardware/sprd/kernel-headers/include
 
 LOCAL_SRC_FILES := \
 	ion.c \
