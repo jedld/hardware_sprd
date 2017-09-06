@@ -46,7 +46,7 @@ LOCAL_MODULE := libawb libawb1
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_TAGS := optional
 LOCAL_MULTILIB := both
-LOCAL_MODULE_STEM_32 := libawb.so libawb1.so 
+LOCAL_MODULE_STEM_32 := libawb.so libawb1.so
 LOCAL_MODULE_STEM_64 := libawb.so libawb1.so
 LOCAL_SRC_FILES_32 :=  $(ISP_LIB_PATH)/lib/libawb.so $(ISP_LIB_PATH)/lib/libawb1.so
 LOCAL_SRC_FILES_64 :=  $(ISP_LIB_PATH)/lib64/libawb_64.so $(ISP_LIB_PATH)/lib64/libawb1_64.so
@@ -226,20 +226,20 @@ ifeq ($(strip $(TARGET_BOARD_USE_THRID_LIB)),true)
 ifeq ($(strip $(TARGET_BOARD_USE_THIRD_AWB_LIB_A)),true)
 ifeq ($(strip $(TARGET_BOARD_USE_ALC_AE_AWB)),false)
 ifeq ($(strip $(TARGET_ARCH)),arm64)
-include $(CLEAR_VARS)		
-LOCAL_MODULE := libAl_Awb		
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES		
-LOCAL_MODULE_TAGS := optional		
-LOCAL_MULTILIB := both		
-LOCAL_MODULE_STEM_32 := libAl_Awb.so		
-LOCAL_MODULE_STEM_64 := libAl_Awb_64.so		
-LOCAL_SRC_FILES_32 := isp2.0/third_lib/alc_awb/libAl_Awb.so		
-LOCAL_SRC_FILES_64 := isp2.0/third_lib/alc_awb/libAl_Awb_64.so		
-include $(BUILD_PREBUILT)		
-else		
-include $(CLEAR_VARS)		
+include $(CLEAR_VARS)
+LOCAL_MODULE := libAl_Awb
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MULTILIB := both
+LOCAL_MODULE_STEM_32 := libAl_Awb.so
+LOCAL_MODULE_STEM_64 := libAl_Awb_64.so
+LOCAL_SRC_FILES_32 := isp2.0/third_lib/alc_awb/libAl_Awb.so
+LOCAL_SRC_FILES_64 := isp2.0/third_lib/alc_awb/libAl_Awb_64.so
+include $(BUILD_PREBUILT)
+else
+include $(CLEAR_VARS)
 LOCAL_PREBUILT_LIBS := isp2.0/third_lib/alc_awb/libAl_Awb.so
-LOCAL_MODULE_TAGS := optional		
+LOCAL_MODULE_TAGS := optional
 include $(BUILD_MULTI_PREBUILT)
 endif
 endif
@@ -251,20 +251,20 @@ ifeq ($(strip $(TARGET_BOARD_USE_THRID_LIB)),true)
 ifeq ($(strip $(TARGET_BOARD_USE_THIRD_AWB_LIB_A)),true)
 ifeq ($(strip $(TARGET_BOARD_USE_ALC_AE_AWB)),false)
 ifeq ($(strip $(TARGET_ARCH)),arm64)
-include $(CLEAR_VARS)		
-LOCAL_MODULE := libAl_Awb_Sp		
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES		
-LOCAL_MODULE_TAGS := optional		
-LOCAL_MULTILIB := both		
-LOCAL_MODULE_STEM_32 := libAl_Awb_Sp.so		
-LOCAL_MODULE_STEM_64 := libAl_Awb_Sp_64.so		
-LOCAL_SRC_FILES_32 := isp2.0/third_lib/alc_awb/libAl_Awb_Sp.so		
-LOCAL_SRC_FILES_64 := isp2.0/third_lib/alc_awb/libAl_Awb_Sp_64.so		
-include $(BUILD_PREBUILT)		
-else		
-include $(CLEAR_VARS)		
-LOCAL_PREBUILT_LIBS := isp2.0/third_lib/alc_awb/libAl_Awb_Sp.so		
-LOCAL_MODULE_TAGS := optional		
+include $(CLEAR_VARS)
+LOCAL_MODULE := libAl_Awb_Sp
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MULTILIB := both
+LOCAL_MODULE_STEM_32 := libAl_Awb_Sp.so
+LOCAL_MODULE_STEM_64 := libAl_Awb_Sp_64.so
+LOCAL_SRC_FILES_32 := isp2.0/third_lib/alc_awb/libAl_Awb_Sp.so
+LOCAL_SRC_FILES_64 := isp2.0/third_lib/alc_awb/libAl_Awb_Sp_64.so
+include $(BUILD_PREBUILT)
+else
+include $(CLEAR_VARS)
+LOCAL_PREBUILT_LIBS := isp2.0/third_lib/alc_awb/libAl_Awb_Sp.so
+LOCAL_MODULE_TAGS := optional
 include $(BUILD_MULTI_PREBUILT)
 endif
 endif
@@ -274,20 +274,20 @@ endif
 ifeq ($(strip $(TARGET_BOARD_USE_THRID_LIB)),true)
 ifeq ($(strip $(TARGET_BOARD_USE_THIRD_AF_LIB_A)),true)
 ifeq ($(strip $(TARGET_ARCH)),arm64)
-include $(CLEAR_VARS)		
-LOCAL_MODULE := libaf_running		
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES		
-LOCAL_MODULE_TAGS := optional		
-LOCAL_MULTILIB := both		
-LOCAL_MODULE_STEM_32 := libaf_running.so		
-LOCAL_MODULE_STEM_64 := libaf_running.so		
-LOCAL_SRC_FILES_32 := isp2.0/third_lib/alc_af/lib/libaf_running.so		
-LOCAL_SRC_FILES_64 := isp2.0/third_lib/alc_af/lib/libaf_running_64.so		
-include $(BUILD_PREBUILT)		
-else		
-include $(CLEAR_VARS)		
-LOCAL_PREBUILT_LIBS := isp2.0/third_lib/alc_af/lib/libaf_running.so		
-LOCAL_MODULE_TAGS := optional	
+include $(CLEAR_VARS)
+LOCAL_MODULE := libaf_running
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS := optional
+LOCAL_MULTILIB := both
+LOCAL_MODULE_STEM_32 := libaf_running.so
+LOCAL_MODULE_STEM_64 := libaf_running.so
+LOCAL_SRC_FILES_32 := isp2.0/third_lib/alc_af/lib/libaf_running.so
+LOCAL_SRC_FILES_64 := isp2.0/third_lib/alc_af/lib/libaf_running_64.so
+include $(BUILD_PREBUILT)
+else
+include $(CLEAR_VARS)
+LOCAL_PREBUILT_LIBS := isp2.0/third_lib/alc_af/lib/libaf_running.so
+LOCAL_MODULE_TAGS := optional
 include $(BUILD_MULTI_PREBUILT)
 endif
 endif
@@ -336,4 +336,3 @@ endif
 
 endif
 endif
-

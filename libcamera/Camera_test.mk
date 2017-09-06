@@ -98,7 +98,6 @@ include $(LOCAL_PATH)/isp2.0/isp2_0.mk
 LOCAL_SRC_FILES+= \
 	sensor/ov5640/sensor_ov5640_mipi.c \
 	sensor/ov5640/sensor_ov5640_mipi_raw.c \
-	sensor/ov5670/sensor_ov5670_mipi_raw.c \
 	sensor/gc2155/sensor_gc2155_mipi.c \
 	sensor/ov8825/sensor_ov8825_mipi_raw.c \
 	sensor/hi544/sensor_hi544_mipi_raw.c \
@@ -115,11 +114,7 @@ include $(LOCAL_PATH)/isp1.0/isp1_0.mk
 LOCAL_SRC_FILES += \
 	tool/auto_test/src/SprdCameraHardware_autest_Interface.cpp \
 	sensor/sensor_ov8825_mipi_raw.c \
-	sensor/sensor_autotest_ov8825_mipi_raw.c\
 	sensor/sensor_ov13850_mipi_raw.c \
-	sensor/sensor_ov5648_mipi_raw.c \
-	sensor/sensor_ov5670_mipi_raw.c \
-	sensor/sensor_ov2680_mipi_raw.c \
 	sensor/sensor_imx179_mipi_raw.c \
 	sensor/sensor_imx219_mipi_raw.c \
 	sensor/sensor_hi544_mipi_raw.c \

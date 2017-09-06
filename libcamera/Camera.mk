@@ -37,7 +37,7 @@ LOCAL_C_INCLUDES +=   $(TOP)/hardware/sprd/libgpu/include
 include $(shell find $(LOCAL_PATH) -name 'Sprdroid.mk')
 
 LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_CFLAGS += -fno-strict-aliasing -Wno-unused-parameter
+LOCAL_CFLAGS += -fno-strict-aliasing -Wno-unused-parameter -Wint-conversion
 
 include $(LOCAL_PATH)/SprdCtrl.mk
 

@@ -27,7 +27,7 @@ LOCAL_C_INCLUDES := \
 	external/skia/include/core\
 	external/jhead \
 	system/media/camera/include \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/source/include/video 
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/source/include/video
 
 ifeq ($(strip $(TARGET_GPU_PLATFORM)),midgard)
 LOCAL_C_INCLUDES += $(TOP)/hardware/sprd/libgpu/gralloc/midgard
@@ -54,7 +54,6 @@ LOCAL_SRC_FILES:= \
 	sc8830/src/cmr_arith.c \
 	sensor_drv_u/src/sensor_drv_u.c \
 	sensor/sensor_ov8825_mipi_raw.c \
-	sensor/sensor_autotest_ov8825_mipi_raw.c \
 	sensor/sensor_ov13850_mipi_raw.c \
 	sensor/sensor_ov5648_mipi_raw.c \
 	sensor/sensor_ov2680_mipi_raw.c \

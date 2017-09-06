@@ -55,10 +55,7 @@ LOCAL_SRC_FILES:= \
 	sc8830/src/cmr_arith.c \
 	sensor_drv_u/src/sensor_drv_u.c \
 	sensor/sensor_ov8825_mipi_raw.c \
-	sensor/sensor_autotest_ov8825_mipi_raw.c \
 	sensor/sensor_ov13850_mipi_raw.c \
-	sensor/sensor_ov5648_mipi_raw.c \
-	sensor/sensor_ov2680_mipi_raw.c \
 	sensor/sensor_imx179_mipi_raw.c \
 	sensor/sensor_imx219_mipi_raw.c \
 	sensor/sensor_hi544_mipi_raw.c \

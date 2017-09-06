@@ -348,6 +348,12 @@ exit_gain:
 	return ret;
 }
 
+int g_cur_real_gain = 0;
+int get_cur_real_gain(void)
+{
+	return g_cur_real_gain;
+}
+
 static cmr_int yde_transfer_frame(cmr_handle class_handle, struct ipm_frame_in *in, struct ipm_frame_out *out)
 {
 	UNUSED(out);
