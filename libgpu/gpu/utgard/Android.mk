@@ -58,27 +58,6 @@ LOCAL_SRC_FILES := usr/libGLES_mali.so
 endif
 
 include $(BUILD_PREBUILT)
-
-#hw
-include $(CLEAR_VARS)
-LOCAL_MODULE_TAGS := optional
-
-ifeq ($(strip $(TARGET_BOARD_PLATFORM)),)
-LOCAL_MODULE := gralloc.default.so
-else
-LOCAL_MODULE := gralloc.$(TARGET_BOARD_PLATFORM).so
-endif
-
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_MULTILIB := both
-ifeq ($(strip $(TARGET_BUILD_VARIANT)), user)
-LOCAL_SRC_FILES :=  usr/gralloc.utgard.so
-else
-LOCAL_SRC_FILES :=  debug/gralloc.utgard.so
-endif
-
-include $(BUILD_PREBUILT)
 endif
 
 endif
