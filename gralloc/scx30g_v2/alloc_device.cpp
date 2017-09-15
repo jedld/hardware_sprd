@@ -392,10 +392,12 @@ static int gralloc_alloc_framebuffer_locked(alloc_device_t *dev, size_t size, in
 
 static int gralloc_alloc_framebuffer(alloc_device_t *dev, size_t size, int usage, buffer_handle_t *pHandle)
 {
+	ALOGD("gralloc_alloc_framebuffer start size: %d, usage: 0x%x", size, usage);
 	private_module_t *m = reinterpret_cast<private_module_t *>(dev->common.module);
 	pthread_mutex_lock(&m->lock);
 	int err = gralloc_alloc_framebuffer_locked(dev, size, usage, pHandle);
 	pthread_mutex_unlock(&m->lock);
+	ALOGD("gralloc_alloc_framebuffer end");
 	return err;
 }
 
@@ -403,9 +405,9 @@ static int gralloc_alloc_framebuffer(alloc_device_t *dev, size_t size, int usage
 
 static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int usage, buffer_handle_t *pHandle, int *pStride)
 {
-	if (!pHandle || !pHandle)
+	if (!pHandle || !pStride)
 	{
-		ALOGD_IF(mDebug,"err invalid pHandle and pHandle!!!");
+		ALOGD_IF(mDebug,"err invalid pHandle and pStride!!!");
 		return -EINVAL;
 	}
 
