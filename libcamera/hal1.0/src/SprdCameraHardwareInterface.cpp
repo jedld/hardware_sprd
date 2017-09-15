@@ -5401,44 +5401,8 @@ status_t SprdCameraHardware::initDefaultParameters()
 
 bool SprdCameraHardware::getLcdSize(uint32_t *width, uint32_t *height)
 {
-	char const * const device_template[] = {
-		"/dev/graphics/fb%u",
-		"/dev/fb%u",
-		NULL
-	};
-
-	int fd = -1;
-	int i = 0;
-	char name[64];
-
-	if (NULL == width || NULL == height)
-		return false;
-
-	while ((fd == -1) && device_template[i]) {
-		snprintf(name, 64, device_template[i], 0);
-		fd = open(name, O_RDONLY, 0);
-		i++;
-	}
-
-	LOGI("getLcdSize dev is %s", name);
-
-	if (fd < 0) {
-		LOGE("getLcdSize fail to open fb");
-		return false;
-	}
-
-	struct fb_var_screeninfo info;
-	if (ioctl(fd, FBIOGET_VSCREENINFO, &info) == -1) {
-		LOGE("getLcdSize fail to get fb info");
-		close(fd);
-		return false;
-	}
-
-	LOGI("getLcdSize w h %d %d", info.yres, info.xres);
-	*width  = info.yres;
-	*height = info.xres;
-
-	close(fd);
+	*width  = 1280;
+	*height = 800;
 	return true;
 }
 

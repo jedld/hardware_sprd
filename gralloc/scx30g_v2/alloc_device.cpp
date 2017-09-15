@@ -123,7 +123,7 @@ static int gralloc_alloc_buffer(alloc_device_t *dev, size_t size, int usage, buf
 			else
 			{
 				ion_heap_mask = ION_HEAP_ID_MASK_SYSTEM;
-			}	
+			}
 		}
 		else
 		{
@@ -400,6 +400,7 @@ static int gralloc_alloc_framebuffer(alloc_device_t *dev, size_t size, int usage
 }
 
 #endif
+
 
 static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int usage, buffer_handle_t *pHandle, int *pStride)
 {

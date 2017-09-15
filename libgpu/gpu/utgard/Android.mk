@@ -59,9 +59,11 @@ endif
 
 include $(BUILD_PREBUILT)
 
+ifeq ($(TARGET_USE_PREBUILT_GRALLOC),true)
 #hw
 include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
+
 
 ifeq ($(strip $(TARGET_BOARD_PLATFORM)),)
 LOCAL_MODULE := gralloc.default.so
@@ -80,5 +82,5 @@ endif
 
 include $(BUILD_PREBUILT)
 endif
-
+endif
 endif

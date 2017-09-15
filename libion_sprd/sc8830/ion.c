@@ -51,8 +51,8 @@ static int ion_ioctl(int fd, int req, void *arg)
 {
     int ret = ioctl(fd, req, arg);
     if (ret < 0) {
-        ALOGE("ioctl %x failed with code %d: %s\n", req,
-              ret, strerror(errno));
+        // ALOGE("ioctl %x failed with code %d: %s\n", req,
+        //       ret, strerror(errno));
         return -errno;
     }
     return ret;
