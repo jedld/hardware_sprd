@@ -51,6 +51,10 @@ LOCAL_CFLAGS += -DVOIP_DSP_PROCESS
 endif
 
 
+ifeq ($(SPRD_AUDIO_USE_NEW_API),true)
+LOCAL_CFLAGS += -DAUDIO_HAL_ANDROID_N_API
+endif
+
 LOCAL_C_INCLUDES += \
 	external/tinyalsa/include \
 	external/expat/lib \
