@@ -417,7 +417,7 @@ static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int
 	size_t size;
 	size_t stride;
 
-	ALOGD_IF(mDebug,"alloc buffer start w:%d h:%d format:0x%x usage:0x%x",w,h,format,usage);
+	// ALOGD_IF(mDebug,"alloc buffer start w:%d h:%d format:0x%x usage:0x%x",w,h,format,usage);
 
 	if (format == 21 || format == HAL_PIXEL_FORMAT_YCbCr_420_888 || format == HAL_PIXEL_FORMAT_YCrCb_420_SP || format == HAL_PIXEL_FORMAT_YV12
 		|| format == HAL_PIXEL_FORMAT_IMPLEMENTATION_DEFINED
@@ -540,7 +540,7 @@ static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int
 			hnd->format = format;
 			hnd->width = stride;
 			hnd->height = h;
-			ALOGD_IF(mDebug,"alloc buffer end handle:%p ion_hnd:0x%x",pHandle,hnd->ion_hnd);
+			// ALOGD_IF(mDebug,"alloc buffer end handle:%p ion_hnd:0x%x",pHandle,hnd->ion_hnd);
 		}
 	}
 

@@ -76,11 +76,11 @@ typedef int ion_user_handle_t;
 
 #endif
 
-static int mDebug=1;
+static int mDebug=0;
 
 /* mali 400 use tile buffer to get high DDR access performance when use 720P LCD.
  */
-#define SIZE_USE_TILE_ALIGN	(1280*720)
+#define SIZE_USE_TILE_ALIGN	(1280*800)
 extern int g_useTileAlign;
 
 /* the max string size of GRALLOC_HARDWARE_GPU0 & GRALLOC_HARDWARE_FB0
