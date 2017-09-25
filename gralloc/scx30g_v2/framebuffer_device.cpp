@@ -726,9 +726,9 @@ int init_frame_buffer_locked(struct private_module_t *module)
 	info.activate = FB_ACTIVATE_NODISP;
 
 	char value[PROPERTY_VALUE_MAX];
-	property_get("ro.sf.lcd_width", value, "100");
+	property_get("ro.sf.lcd_width", value, "1");
 	info.width = atoi(value);
-	property_get("ro.sf.lcd_height", value, "170");
+	property_get("ro.sf.lcd_height", value, "1");
 	info.height = atoi(value);
 
 #ifdef GRALLOC_16_BITS

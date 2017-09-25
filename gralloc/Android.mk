@@ -17,4 +17,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
+ifeq ($(TARGET_USE_PREBUILT_GRALLOC),false)
 include $(call all-named-subdir-makefiles,scx30g_v2)
+endif

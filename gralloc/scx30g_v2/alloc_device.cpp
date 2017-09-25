@@ -383,12 +383,6 @@ static int gralloc_alloc_framebuffer_locked(alloc_device_t *dev, size_t size, in
 
 #endif
 	}
-
-	// correct numFds/numInts when there is no dmabuf fd
-	if (hnd->share_fd < 0) {
-		hnd->numFds--;
-		hnd->numInts++;
-	}
 #endif
 
 	*pHandle = hnd;
@@ -398,35 +392,32 @@ static int gralloc_alloc_framebuffer_locked(alloc_device_t *dev, size_t size, in
 
 static int gralloc_alloc_framebuffer(alloc_device_t *dev, size_t size, int usage, buffer_handle_t *pHandle)
 {
-	ALOGD("gralloc_alloc_framebuffer start size: %d, usage: 0x%x", size, usage);
 	private_module_t *m = reinterpret_cast<private_module_t *>(dev->common.module);
 	pthread_mutex_lock(&m->lock);
 	int err = gralloc_alloc_framebuffer_locked(dev, size, usage, pHandle);
 	pthread_mutex_unlock(&m->lock);
-	ALOGD("gralloc_alloc_framebuffer end");
 	return err;
 }
 
 #endif
 
+
 static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int usage, buffer_handle_t *pHandle, int *pStride)
 {
 	if (!pHandle || !pStride)
 	{
-		ALOGD_IF(mDebug,"err invalid pHandle and pStride!!!");
 		return -EINVAL;
 	}
 
 	if(w < 1 || h < 1)
 	{
-		ALOGD_IF(mDebug,"err invalid width and height!!!");
 		return -EINVAL;
 	}
 
 	size_t size;
 	size_t stride;
 
-	ALOGD_IF(mDebug,"alloc buffer start w:%d h:%d format:0x%x usage:0x%x",w,h,format,usage);
+	// ALOGD_IF(mDebug,"alloc buffer start w:%d h:%d format:0x%x usage:0x%x",w,h,format,usage);
 
 	if (format == 21 || format == HAL_PIXEL_FORMAT_YCbCr_420_888 || format == HAL_PIXEL_FORMAT_YCrCb_420_SP || format == HAL_PIXEL_FORMAT_YV12
 		|| format == HAL_PIXEL_FORMAT_IMPLEMENTATION_DEFINED
@@ -473,7 +464,6 @@ static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int
 				break;
 
 			default:
-				ALOGD_IF(mDebug,"alloc buffer unknown pixel format! format:0x%x", format);
 				return -EINVAL;
 		}
 	}
@@ -503,7 +493,6 @@ static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int
 				break;
 
 			default:
-				ALOGD_IF(mDebug,"alloc buffer 2 unknown pixel format! format:0x%x", format);
 				return -EINVAL;
 		}
 
@@ -551,13 +540,12 @@ static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int
 			hnd->format = format;
 			hnd->width = stride;
 			hnd->height = h;
-			ALOGD_IF(mDebug,"alloc buffer end handle:%p ion_hnd:0x%x",pHandle,hnd->ion_hnd);
+			// ALOGD_IF(mDebug,"alloc buffer end handle:%p ion_hnd:0x%x",pHandle,hnd->ion_hnd);
 		}
 	}
 
 	if (err < 0)
 	{
-		ALOGD_IF(mDebug,"err 0x%x", err);
 		return err;
 	}
 
@@ -600,7 +588,6 @@ static int alloc_device_alloc(alloc_device_t *dev, int w, int h, int format, int
 	hnd->stride = stride;
 
 	*pStride = stride;
-	ALOGD_IF(mDebug,"alloc buffer ok");
 	return 0;
 }
 

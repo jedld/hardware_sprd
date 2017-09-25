@@ -69,8 +69,8 @@ static int gralloc_register_buffer(gralloc_module_t const *module, buffer_handle
 
 	// if this handle was created in this process, then we keep it as is.
 	private_handle_t *hnd = (private_handle_t *)handle;
-	ALOGD("gralloc_register_buffer w:%d h:%d format:0x%x usage:0x%x flags:0x%x",hnd->width, hnd->height, hnd->format, hnd->usage, hnd->flags);
-	ALOGD_IF(mDebug,"register buffer  handle:%p ion_hnd:0x%x",handle, hnd->ion_hnd);
+
+	ALOGD_IF(mDebug,"register buffer  handle:%p ion_hnd:0x%x",handle,hnd->ion_hnd);
 
 	int retval = -EINVAL;
 
@@ -115,7 +115,7 @@ static int gralloc_register_buffer(gralloc_module_t const *module, buffer_handle
 			{
 				hnd->writeOwner = 0;
 				hnd->lockState &= ~(private_handle_t::LOCK_STATE_UNREGISTERED);
-
+				
 				pthread_mutex_unlock(&s_map_lock);
 				return 0;
 			}
@@ -172,7 +172,7 @@ static int gralloc_register_buffer(gralloc_module_t const *module, buffer_handle
 
 		hnd->base = mappedAddress + hnd->offset;
 		hnd->lockState &= ~(private_handle_t::LOCK_STATE_UNREGISTERED);
-
+		
 		pthread_mutex_unlock(&s_map_lock);
 		return 0;
 #endif
@@ -280,7 +280,7 @@ static int gralloc_lock(gralloc_module_t const *module, buffer_handle_t handle, 
 	private_handle_t *hnd = (private_handle_t *)handle;
 
 	pthread_mutex_lock(&s_map_lock);
-
+	
 	if (hnd->lockState & private_handle_t::LOCK_STATE_UNREGISTERED)
 	{
 		AERR("Locking on an unregistered buffer 0x%p, returning error", hnd);
@@ -478,3 +478,4 @@ private_module_t::private_module_t()
  * implemented above
  */
 struct private_module_t HAL_MODULE_INFO_SYM;
+

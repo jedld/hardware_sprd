@@ -1,6 +1,6 @@
-#
+# 
 # Copyright (C) 2010 ARM Limited. All rights reserved.
-#
+# 
 # Copyright (C) 2008 The Android Open Source Project
 #
 # Copyright (C) 2016 The CyanogenMod Project
@@ -43,9 +43,12 @@ LOCAL_SHARED_LIBRARIES := \
 	$(SHARED_MEM_LIBS) \
 
 LOCAL_C_INCLUDES := \
-	hardware/sprd/kernel-headers/include \
-	hardware/sprd/kernel-headers/include/video \
-	frameworks/native/libs/arect/include
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include/video/ \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include/ \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/ \
+
+LOCAL_ADDITIONAL_DEPENDENCIES += \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr \
 
 LOCAL_EXPORT_C_INCLUDE_DIRS := \
 	$(LOCAL_PATH) \

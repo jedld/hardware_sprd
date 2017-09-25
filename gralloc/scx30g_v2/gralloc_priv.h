@@ -69,18 +69,18 @@ typedef int ion_user_handle_t;
 
 typedef int ion_user_handle_t;
 
-#define ION_INVALID_HANDLE NULL
+#define ION_INVALID_HANDLE 0
 #endif /* new libion */
 
 #endif /* GRALLOC_ARM_DMA_BUF_MODULE */
 
 #endif
 
-static int mDebug=1;
+static int mDebug=0;
 
 /* mali 400 use tile buffer to get high DDR access performance when use 720P LCD.
  */
-#define SIZE_USE_TILE_ALIGN	(1280*720)
+#define SIZE_USE_TILE_ALIGN	(1280*800)
 extern int g_useTileAlign;
 
 /* the max string size of GRALLOC_HARDWARE_GPU0 & GRALLOC_HARDWARE_FB0
@@ -327,21 +327,9 @@ struct private_handle_t
 	{
 		const private_handle_t *hnd = (const private_handle_t *)h;
 
-		if (!h || h->version != sizeof(native_handle) || hnd->magic != sMagic)
-		{
-			return -EINVAL;
-		}
-
-		int numFds = sNumFds;
-		int numInts = (sizeof(private_handle_t) - sizeof(native_handle)) / sizeof(int) - sNumFds;
-#if GRALLOC_ARM_DMA_BUF_MODULE
-		if (hnd->share_fd < 0) {
-			numFds--;
-			numInts++;
-		}
-#endif
-
-		if (h->numFds != numFds || h->numInts != numInts)
+		if (!h || h->version != sizeof(native_handle) || h->numFds != sNumFds ||
+		        h->numInts != (sizeof(private_handle_t) - sizeof(native_handle)) / sizeof(int) - sNumFds ||
+		        hnd->magic != sMagic)
 		{
 			return -EINVAL;
 		}
