@@ -300,11 +300,11 @@ static int gralloc_lock(gralloc_module_t const *module, buffer_handle_t handle, 
 	if (usage & (GRALLOC_USAGE_SW_READ_MASK | GRALLOC_USAGE_SW_WRITE_MASK))
 	{
 		*vaddr = (void *)hnd->base;
-#if GRALLOC_ARM_DMA_BUF_MODULE
-		private_module_t *m = (private_module_t*)module;
-
-		ion_invalidate_fd(m->ion_client, hnd->share_fd);
-#endif
+// #if GRALLOC_ARM_DMA_BUF_MODULE
+// 		private_module_t *m = (private_module_t*)module;
+//
+// 		ion_invalidate_fd(m->ion_client, hnd->share_fd);
+// #endif
 	}
 
 	MALI_IGNORE(l);
